@@ -3,18 +3,17 @@ pipeline {
     agent any
 
     stages {
-
         stage('link and format') {
             stages {
                 stage('linting') {
-                    steps: {
-                        echo 'linting code in nexted stage'
+                    steps {
+                        echo 'linting code in nested stage'
                     }
                 }
 
-                stage('linting') {
-                    steps: {
-                        echo 'formatting code in nexted stage'
+                stage('formatting') {
+                    steps {
+                        echo 'formatting code in nested stage'
                     }
                 }
             }
