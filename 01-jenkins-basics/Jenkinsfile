@@ -8,15 +8,23 @@ pipeline {
         //     }
         // }
 
+        environment {
+            DB_HOST = '192.168.12.2',
+            USERNAME = 'user1',
+            PASSWROD = 'password'
+        }
+
         stage('Setup') {
             steps {
                 bat "pip install -r 01-jenkins-basics\\requirements.txt"
+                echo "Database IP is: ${DB_HOST}"
             }
         }
 
         stage('Test') {
             steps {
                 bat "pytest 01-jenkins-basics\\test_app.py"
+                echo "Username is: ${USERNAME} and the password is: ${PASSWROD}"
             }
         }
     }
