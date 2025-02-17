@@ -3,17 +3,30 @@ pipeline {
     agent any
 
     stages {
-        stage('link and format') {
-            stages {
+        stage('lint and format') {
+            // stages {
+            //     stage('linting') {
+            //         steps {
+            //             echo 'linting code in nested stage'
+            //         }
+            //     }
+
+            //     stage('formatting') {
+            //         steps {
+            //             echo 'formatting code in nested stage'
+            //         }
+            //     }
+            // }
+            parallel {
                 stage('linting') {
                     steps {
-                        echo 'linting code in nested stage'
+                        bat 'sleep 10'
                     }
                 }
 
                 stage('formatting') {
                     steps {
-                        echo 'formatting code in nested stage'
+                        bat 'sleep 10'
                     }
                 }
             }
