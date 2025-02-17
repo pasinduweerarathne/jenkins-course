@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('lint and format') {
             steps {
-                bat 'timeout /t 70 > nul'
+                bat 'timeout /t 70'
             }
         }
 
