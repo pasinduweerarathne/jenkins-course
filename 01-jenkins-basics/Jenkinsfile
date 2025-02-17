@@ -10,13 +10,13 @@ pipeline {
 
         stage('Setup') {
             steps {
-                bat "pip install -r requirements.txt"
+                bat "pip install -r 01-jenkins-basics\\requirements.txt"
             }
         }
 
         stage('Test') {
             steps {
-                bat "pytest"
+                bat "pytest 01-jenkins-basics\\test_app.py"
             }
         }
     }
