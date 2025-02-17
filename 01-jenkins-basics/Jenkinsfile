@@ -1,14 +1,31 @@
-// ______________________________CREDENTIALS______________________________
+// ______________________________NESTED AND PARALLEL STAGES______________________________
 pipeline {
     agent any
 
     stages {
+
+        stage('link and format') {
+            stages {
+                stage('linting') {
+                    steps: {
+                        echo 'linting code in nexted stage'
+                    }
+                }
+
+                stage('linting') {
+                    steps: {
+                        echo 'formatting code in nexted stage'
+                    }
+                }
+            }
+        }
+
         stage('Setup') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'server-creds', usernameVariable: 'myUser', passwordVariable: 'myPass')]) {
                     bat '''
-                    echo ${myUser}
-                    echo ${myPass}
+                    echo %myUser%
+                    echo %myPass%
                     '''
                 }
                 
@@ -23,6 +40,34 @@ pipeline {
         }
     }
 }
+
+
+
+// ______________________________CREDENTIALS______________________________
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage('Setup') {
+//             steps {
+//                 withCredentials([usernamePassword(credentialsId: 'server-creds', usernameVariable: 'myUser', passwordVariable: 'myPass')]) {
+//                     bat '''
+//                     echo %myUser%
+//                     echo %myPass%
+//                     '''
+//                 }
+                
+//                 bat "pip install -r 01-jenkins-basics\\requirements.txt"
+//             }
+//         }
+
+//         stage('Test') {
+//             steps {
+//                 bat "pytest 01-jenkins-basics\\test_app.py"
+//             }
+//         }
+//     }
+// }
 // pipeline {
 //     agent any
 
