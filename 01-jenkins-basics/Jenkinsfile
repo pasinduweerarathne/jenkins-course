@@ -1,34 +1,15 @@
-// ______________________________NESTED AND PARALLEL STAGES______________________________
+// ______________________________OPTIONS______________________________
 pipeline {
     agent any
 
+    options {
+        timeout(time: 1, unit: 'MINUTES')
+    }
+
     stages {
         stage('lint and format') {
-            // stages {
-            //     stage('linting') {
-            //         steps {
-            //             echo 'linting code in nested stage'
-            //         }
-            //     }
-
-            //     stage('formatting') {
-            //         steps {
-            //             echo 'formatting code in nested stage'
-            //         }
-            //     }
-            // }
-            parallel {
-                stage('linting') {
-                    steps {
-                        bat 'ping 127.0.0.1 -n 11 > nul'
-                    }
-                }
-
-                stage('formatting') {
-                    steps {
-                        bat 'ping 127.0.0.1 -n 11 > nul'
-                    }
-                }
+            steps {
+                bat 'timeout /t 70 > nul'
             }
         }
 
@@ -52,6 +33,64 @@ pipeline {
         }
     }
 }
+
+
+
+
+// ______________________________NESTED AND PARALLEL STAGES______________________________
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage('lint and format') {
+//             // stages {
+//             //     stage('linting') {
+//             //         steps {
+//             //             echo 'linting code in nested stage'
+//             //         }
+//             //     }
+
+//             //     stage('formatting') {
+//             //         steps {
+//             //             echo 'formatting code in nested stage'
+//             //         }
+//             //     }
+//             // }
+//             parallel {
+//                 stage('linting') {
+//                     steps {
+//                         bat 'ping 127.0.0.1 -n 11 > nul'
+//                     }
+//                 }
+
+//                 stage('formatting') {
+//                     steps {
+//                         bat 'ping 127.0.0.1 -n 11 > nul'
+//                     }
+//                 }
+//             }
+//         }
+
+//         stage('Setup') {
+//             steps {
+//                 withCredentials([usernamePassword(credentialsId: 'server-creds', usernameVariable: 'myUser', passwordVariable: 'myPass')]) {
+//                     bat '''
+//                     echo %myUser%
+//                     echo %myPass%
+//                     '''
+//                 }
+                
+//                 bat "pip install -r 01-jenkins-basics\\requirements.txt"
+//             }
+//         }
+
+//         stage('Test') {
+//             steps {
+//                 bat "pytest 01-jenkins-basics\\test_app.py"
+//             }
+//         }
+//     }
+// }
 
 
 
