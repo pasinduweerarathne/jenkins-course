@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('lint and format') {
             steps {
-                bat 'timeout /t 70'
+                bat 'ping 127.0.0.1 -n 71 > nul'  // Ping with 71 for 70 seconds delay
             }
         }
 
@@ -33,6 +33,7 @@ pipeline {
         }
     }
 }
+
 
 
 
