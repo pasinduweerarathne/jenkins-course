@@ -1,5 +1,12 @@
 pipeline {
     agent any
+
+    environment {
+        DB_HOST = '192.168.12.2'
+        USERNAME = 'user1'
+        PASSWROD = 'password'
+    }
+
     stages {
         // stage('Checkout') {
         //     steps {
@@ -7,12 +14,6 @@ pipeline {
         //         bat "dir"
         //     }
         // }
-
-        environment {
-            DB_HOST = '192.168.12.2'
-            USERNAME = 'user1'
-            PASSWROD = 'password'
-        }
 
         stage('Setup') {
             steps {
