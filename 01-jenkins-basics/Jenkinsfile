@@ -4,19 +4,19 @@ pipeline {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/pasinduweerarathne/jenkins-course.git', branch: 'jenkins-basics'
-                sh "ls -ltr"
+                bat "dir"
             }
         }
 
         stage('Setup') {
             steps {
-                sh "pip install -r requirements.txt"
+                bat "pip install -r requirements.txt"
             }
         }
 
         stage('Test') {
             steps {
-                sh "pytest"
+                bat "pytest"
             }
         }
     }
