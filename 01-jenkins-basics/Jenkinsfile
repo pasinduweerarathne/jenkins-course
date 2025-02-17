@@ -20,13 +20,13 @@ pipeline {
             parallel {
                 stage('linting') {
                     steps {
-                        bat 'timeout /t 10 /nobreak'
+                        bat 'ping 127.0.0.1 -n 11 > nul'
                     }
                 }
 
                 stage('formatting') {
                     steps {
-                        bat 'timeout /t 10 /nobreak'
+                        bat 'ping 127.0.0.1 -n 11 > nul'
                     }
                 }
             }
