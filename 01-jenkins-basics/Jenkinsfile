@@ -1,12 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/pasinduweerarathne/jenkins-course.git', branch: 'jenkins-basics'
-                bat "dir"
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         git url: 'https://github.com/pasinduweerarathne/jenkins-course.git', branch: 'jenkins-basics'
+        //         bat "dir"
+        //     }
+        // }
 
         stage('Setup') {
             steps {
