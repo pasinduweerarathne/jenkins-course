@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DB_HOST = '192.168.12.2'
-        USERNAME = 'user1'
-        PASSWROD = 'password'
-    }
-
     stages {
         // stage('Checkout') {
         //     steps {
@@ -16,6 +10,13 @@ pipeline {
         // }
 
         stage('Setup') {
+
+             environment {
+                DB_HOST = '192.168.12.2'
+                USERNAME = 'user1'
+                PASSWROD = 'password'
+            }
+
             steps {
                 bat "pip install -r 01-jenkins-basics\\requirements.txt"
                 echo "Database IP is: ${DB_HOST}"
