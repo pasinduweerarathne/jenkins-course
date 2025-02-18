@@ -3,13 +3,13 @@ pipeline {
     agent any
 
     options {
-        timeout(time: 1, unit: 'MINUTES')
+        timeout(time: 1, unit: 'MINUTES') // Global timeout
     }
 
     stages {
         stage('lint and format') {
             steps {
-                bat 'ping 127.0.0.1 -n 71 > nul'  // Ping with 71 for 70 seconds delay
+                bat 'ping 127.0.0.1 -n 10 > nul'
             }
         }
 
